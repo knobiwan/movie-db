@@ -1,0 +1,39 @@
+.movie {
+  margin: 4em;
+  height: 100%; }
+  .movie span {
+    font-weight: 200; }
+  .movie .movie-head {
+    display: flex;
+    justify-content: space-between; }
+    .movie .movie-head h1 {
+      margin: 0; }
+    .movie .movie-head .genres {
+      color: lightgrey; }
+    .movie .movie-head .vote-average {
+      margin: 0 2em 0 2em; }
+      .movie .movie-head .vote-average .vote {
+        font-weight: bold;
+        color: green; }
+  .movie .movie-infos {
+    display: flex;
+    justify-content: space-between;
+    margin: 2em 0 0 0; }
+    .movie .movie-infos img {
+      margin: 0 2em 0 0; }
+    .movie .movie-infos .movie-description {
+      display: flex;
+      flex-direction: column; }
+      .movie .movie-infos .movie-description h2 {
+        margin: 0; }
+      .movie .movie-infos .movie-description .other-infos {
+        display: flex;
+        justify-content: space-between; }
+        .movie .movie-infos .movie-description .other-infos div {
+          margin: 0 1em 0 0; }
+        .movie .movie-infos .movie-description .other-infos .actors {
+          margin: 0 20em 0 0; }
+          .movie .movie-infos .movie-description .other-infos .actors span {
+            display: block; }
+        .movie .movie-infos .movie-description .other-infos button {
+          color: black; }

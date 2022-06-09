@@ -1,0 +1,128 @@
+@mixin transform-origin ($origin) {
+  -moz-transform-origin: $origin;
+  -o-transform-origin: $origin;
+  -ms-transform-origin: $origin;
+  -webkit-transform-origin: $origin;
+  transform-origin: $origin;
+}
+
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin ratings-x {
+@for $i from 1 through 20 {
+  .rate-circle-#{$i / 2 * 10}:before {
+      @include transform(rotate(#{$i / 2 * 36}deg));
+  }
+}
+}
+
+$rating-inactive-color: #E6E7E8;
+$rating-active-color: #23BDF0;
+
+.rate-circle-wrapper {
+  font-size: 300%;
+  width:1em;
+  height:1em;
+  border-radius: 1em;
+  background: $rating-inactive-color;
+  margin: 0;
+  padding: 0;
+  float: left;
+  margin: 0.2rem;
+  position:relative;
+  box-sizing: border-box;
+  &:after {
+      //needed for android :(
+      width: 1.3em;
+      height: 1.3em;
+      background:none;
+      display:block;
+      border: .2em solid #373b69;
+      position:absolute;   
+      border-radius:1em;
+      top:-.15em;
+      left:-.15em;
+      outline:0;
+      content: "";
+      z-index: 6;
+      box-sizing: inherit;
+      overflow:hidden;
+  }
+
+}
+
+.rate-circle-foreground {
+  position: absolute;
+  margin:.15em;
+  width:.7em;
+  height:.7em;
+  background: #373b69;
+  border-radius:1em;
+  z-index:2;
+  box-sizing:border-box;
+  display:block;
+  .rate-circle-number{
+      font-size:.36em;
+      font-weight:bold;
+      font-family:arial;
+      text-align: center;
+      line-height: 2em; 
+      display:block;
+      height:100%;
+  }
+}
+
+/* 1em */
+.rate-circle {
+  display:block;
+  position:relative;
+  width:.5em;
+  height:1em;
+  overflow:hidden;
+  @include transform-origin(left center);
+  margin-left:.5em;
+}
+.rate-circle.rate-circle-big:after, .rate-circle:before {
+  content:" ";
+  position:absolute;
+  width:.5em;
+  height:1em;
+  background: $rating-active-color;
+}
+.rate-circle.rate-circle-big.green:after, .rate-circle.green:before {
+  background: green;
+}
+.rate-circle.rate-circle-big.orange:after, .rate-circle.orange:before {
+  background: orange;
+}
+.rate-circle.rate-circle-big.red:after, .rate-circle.red:before {
+  background: red;
+}
+.rate-circle:before {
+  left:-100%;
+  border-radius:.5em 0 0 .5em;
+  @include transform-origin(right center);
+}
+.rate-circle.rate-circle-big {
+  width:1em;
+  @include transform-origin(center center);
+  margin-left:0;
+}
+.rate-circle.rate-circle-big:before {
+  left:0;
+}
+.rate-circle.rate-circle-big:after {
+  left:50%;
+  border-radius:0 .5em .5em 0;
+}
+.rate-circle:before {
+  @include transform(rotate(36deg));
+}
+
+@include ratings-x;

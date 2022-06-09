@@ -1,0 +1,17 @@
+ input {
+    background-color: transparent;
+    border: 2px solid #22254b;
+    border-radius: 50px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    ::placeholder {
+        color: #7378c5;
+    }
+ }
+
+ input:focus {
+    background-color: #22254b;
+    outline: none;
+}
