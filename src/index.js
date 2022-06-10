@@ -3,9 +3,9 @@ import { createRoot } from "react-dom/client";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import { DISCOVER_MOVIES } from "./constants.js";
-import MovieDetail from "./movie-detail/movie-detail";
-import MovieTile from "./movie-tile/movie-tile";
-import Search from "./search/search";
+import MovieDetail from "./movie-detail/movie-detail.tsx";
+import MovieTile from "./movie-tile/movie-tile.tsx";
+import Search from "./search/search.tsx";
 import "./styles/css/index.css";
 
 const App = () => {
