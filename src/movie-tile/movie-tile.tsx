@@ -21,7 +21,7 @@ const MovieTile = (props: any) => {
                 : movie.vote_average >= 5
                 ? "orange"
                 : "red";
-        const nmb = Math.ceil((movie.vote_average * 10) / 5) * 5;
+        const nmb = movie.vote_average === 0 ? 0 : Math.ceil((movie.vote_average * 10) / 5) * 5;
         const bigClass = movie.vote_average > 5 ? "rate-circle-big" : "";
 
         return `rate-circle rate-circle-${nmb} ${bigClass} ${rateColor}`;

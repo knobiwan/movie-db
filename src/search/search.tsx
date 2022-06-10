@@ -20,20 +20,30 @@ const Search = (props: any) => {
     }
 
     return (
-        <input
-            placeholder="Search"
-            // value={searchTerm}
-            // onChange={(e) => {
-            //     setSearchTerm(e.target.value);
-            //     console.log(searchTerm);
-            // }}
-            onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                    SubmitSearch((e.target as HTMLInputElement).value, props);
-                    // setSearchTerm(e.target.value);
-                }
-            }}
-        ></input>
+        <div className="search-box">
+            <button className="btn-search"><i className="fa fa-search"></i></button>
+            <input type="text" className="input-search" placeholder="Type to Search..."
+                onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                        SubmitSearch((e.target as HTMLInputElement).value, props);
+                        // setSearchTerm(e.target.value);
+                    }
+                    }} />
+        </div>
+        // <input
+        //     placeholder="Search"
+        //     // value={searchTerm}
+        //     // onChange={(e) => {
+        //     //     setSearchTerm(e.target.value);
+        //     //     console.log(searchTerm);
+        //     // }}
+        //     onKeyPress={(e) => {
+        //         if (e.key === "Enter") {
+        //             SubmitSearch((e.target as HTMLInputElement).value, props);
+        //             // setSearchTerm(e.target.value);
+        //         }
+        //     }}
+        // ></input>
     );
 };
 

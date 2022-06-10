@@ -1,14 +1,55 @@
-input {
-  background-color: transparent;
-  border: 2px solid #22254b;
-  border-radius: 50px;
-  color: #fff;
-  font-family: inherit;
-  font-size: 1rem;
-  padding: 0.5rem 1rem; }
-  input ::placeholder {
-    color: #7378c5; }
+.search-box {
+  width: fit-content;
+  height: fit-content;
+  position: relative; }
 
-input:focus {
-  background-color: #22254b;
-  outline: none; }
+.input-search {
+  height: 50px;
+  width: 50px;
+  border-style: none;
+  padding: 10px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 25px;
+  transition: all .5s ease-in-out;
+  padding-right: 40px;
+  color: #000; }
+
+.input-search::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 100; }
+
+.btn-search {
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+  color: #fff;
+  background-color: transparent;
+  pointer-events: painted; }
+  .btn-search .fa-search {
+    background-color: transparent;
+    color: #000; }
+
+.btn-search:focus ~ .input-search {
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2); }
+
+.input-search:focus {
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2); }

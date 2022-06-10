@@ -43,7 +43,7 @@ $rating-active-color: #23BDF0;
       height: 1.3em;
       background:none;
       display:block;
-      border: .2em solid #373b69;
+      border: .2em solid #fff;
       position:absolute;   
       border-radius:1em;
       top:-.15em;
@@ -62,7 +62,7 @@ $rating-active-color: #23BDF0;
   margin:.15em;
   width:.7em;
   height:.7em;
-  background: #373b69;
+  background: #fff;
   border-radius:1em;
   z-index:2;
   box-sizing:border-box;
@@ -75,6 +75,7 @@ $rating-active-color: #23BDF0;
       line-height: 2em; 
       display:block;
       height:100%;
+      background-color: unset;
   }
 }
 

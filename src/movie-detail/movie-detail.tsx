@@ -1,59 +1,81 @@
 import { useEffect, useState } from "react";
 import * as React from "react";
-// import { useLocation, useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import { IMG_PATH, MOVIE_CREDITS, MOVIE_DETAILS } from "../constants";
+import { IMG_PATH, MOVIE_CREDITS, MOVIE_DETAILS, STREAMING_PROVIDER } from "../constants";
 import "../styles/css/movie-detail.css";
 
 const MovieDetail = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [movie, setMovie] = useState<any | undefined>([]);
     const [cast, setCast] = useState<any | undefined>([]);
+    const [crew, setCrew] = useState<any | undefined>([]);
+    const [streamingProvider, setStreamingProvider] = useState<any | undefined>([]);
     const [expanded, setExpanded] = useState<boolean>(false);
-    const { state } = useLocation();
-    const castForDisplay = expanded ? cast.slice(0, 10) : cast.slice(0, 5);
+    const location = useLocation();
+    const state = location.state as any;
+    const castForDisplay = expanded ? cast : cast.slice(0, 6);
 
-    const getMovieDetails = async(movieId: number): Promise<JSON> => {
+    const getMovieDetails = async(movieId: number): Promise<any> => {
         const url = MOVIE_DETAILS.replace("{movieId}", movieId.toString());
         const resp = await fetch(url).then((response) => response.json());
     
         return resp;
     }
 
-    const getMovieCredits = async(movieId: number) => {
+    const getMovieCredits = async(movieId: number):Promise<any> => {
         const url = MOVIE_CREDITS.replace("{movieId}", movieId.toString());
         const resp = await fetch(url).then((response) => response.json());
     
         return resp;
     }
 
-    const getImage = (movie: any) => {
+    const getStreamingProvider = async(movieId: number):Promise<any> => {
+        const url = STREAMING_PROVIDER.replace("{movieId}", movieId.toString());
+        const resp = await fetch(url).then((response) => response.json());
+    
+        return resp;
+    }
+
+    const getMovieCoverPath = (movie: any):string => {
         return movie.poster_path != null
             ? IMG_PATH + movie.poster_path
             : "./assets/no-cover.jpg";
     }
 
-    const getGenres = (movie: any) => {
+    const getGenres = (movie: any):string => {
         if (!movie.genres) return "";
     
         return movie.genres.map((g: any) => g.name).join(" & ");
     }
 
-    const getLanguageName = (movie: any) => {
+    const getLanguageName = (movie: any): string|undefined => {
         if (!movie.original_language) return "";
     
-        const regionNamesInEnglish = new Intl.DisplayNames(["en"], {
+        const regionNamesInEnglish = new Intl.DisplayNames(["de"], {
             type: "language",
         });
+
         return regionNamesInEnglish.of(movie.original_language);
     }
 
-// const getProductionCountries = (movie) => {
-//     if (!movie.production_countries) return "";
+    const getActorPicturePath = (actor: any): string => {
+        return actor.profile_path
+            ? IMG_PATH + actor.profile_path
+            : "./assets/no-profile.jpg";
+    }
 
-//     return movie.production_countries.map((c) => c.name).join(", ");
-// }
+    const getProducer = (crew: any[]): string => {
+        const directors = crew.filter((c: any) => c.job === 'Director');
+
+        return Array.from(new Set(directors.map((c: any) => c.name))).join(', ');
+    }
+
+    const getWriter = (crew: any[]): string => {
+        const writers = crew.filter((c: any) => c.department === 'Writing');
+
+        return Array.from(new Set(writers.map((c: any) => c.name))).join(', ');
+    }
 
     useEffect(() => {
         const movieId = state.movieId;
@@ -66,60 +88,97 @@ const MovieDetail = () => {
         const movieId = state.movieId;
         getMovieCredits(movieId).then((result) => {
             setCast(result.cast);
+            setCrew(result.crew);
         });
     }, [state.movieId]);
 
-    // console.log(movie);
-    // console.log(cast);
-    const image = getImage(movie);
+    useEffect(() => {
+        const movieId = state.movieId;
+        getStreamingProvider(movieId).then((result) => {
+            setStreamingProvider(result.results);
+        });
+    }, [state.movieId]);
+
+    const movieCover = getMovieCoverPath(movie);
     const genres = getGenres(movie);
-    // const productionCountries = getProductionCountries(movie);
     const language = getLanguageName(movie);
+    const producer = getProducer(crew);
+    const writer = getWriter(crew);
 
     return (
         <>
             {movie.id && (
-                <div className="movie">
-                <div className="movie-head">
-                    <div>
-                        <h1>{movie.title}</h1>
-                        <span className="genres">{genres}</span>
-                    </div>
-                    <div className="vote-average">
-                        <span className="vote">{movie.vote_average}</span>
-                        <span> / 10</span>
+            <div className="movie">
+                <div className="header container">
+                    <button className="back" title="Back" onClick={() => {
+                        navigate("/"); }}><i className="fa fa-arrow-left"></i>
+                    </button>
+                </div>
+                <div className="movie-head container">
+                    <div className="row">
+                        <div className="col-md-10">
+                            <h1>{movie.title}</h1>
+                            <span className="genres">{genres}</span>
+                        </div>
+                        <div className="col-md-2">
+                            <span className="vote-average">{movie.vote_average}</span>
+                            <span> / 10</span>
+                        </div>
                     </div>
                 </div>
-                <div className="movie-infos">
-                    {/* <div className="img-gradient"> */}
-                    <img src={image} alt={movie.title}></img>
-                    {/* </div> */}
-                    <div className="movie-description">
-                        <div>
-                            <h2>About the Movie</h2>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-4">
+                            <img className="movie-poster" src={movieCover} alt={movie.title}></img>
+                        </div>
+                        <div className="col-md-4">
+                            <h2>Handlung</h2>
                             <span>{movie.overview}</span>
                         </div>
-                        <div className="other-infos">
-                            <div>
-                                <h3>Release Date</h3>
-                                <div>{movie.release_date}</div>
-                                <h3>Runtime</h3>
-                                <span>{movie.runtime} seconds</span>
-                                <h3>Language</h3>
+                        <div className="col-md-4">
+                            <div className="info">
+                                <h2>Erschienen</h2>
+                                <span>{movie.release_date}</span>
+                            </div>
+                            <div className="info">
+                                <h2>Laufzeit</h2>
+                                <span>{movie.runtime} Minuten</span>
+                            </div>
+                            <div className="info">
+                                <h2>Original Sprache</h2>
                                 <span>{language}</span>
                             </div>
-                            <div className="actors">
-                                <h3>Actors</h3>
-                                {castForDisplay.map((event: any) => (
-                                    <span key={event.name}>{event.name}</span>
-                                ))}
-                                <button
-                                    type="button"
-                                    onClick={() => setExpanded(!expanded)}
-                                >
-                                    {expanded ? "Less" : "More"}
-                                </button>
+                            <div className="info">
+                                <h2>Regie</h2>
+                                <span>{producer}</span>
                             </div>
+                            <div className="info">
+                                <h2>Drehbuch</h2>
+                                <span>{writer}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="actors col-md-12">
+                            <h2>Darsteller</h2>
+                            <div className="row">
+                                {castForDisplay.map((actor: any) => (
+                                    <div className="actor col-sm-6 col-lg-4">
+                                        <div className="actor-avatar" style={{backgroundImage: `url(${getActorPicturePath(actor)})`}} />
+                                        <div>
+                                            <p className="actor-name">{actor.name}</p>
+                                            <p className="character-name">{actor.character}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <button
+                                type="button"
+                                className="more"
+                                onClick={() => setExpanded(!expanded)}
+                            >
+                                {expanded ? "Less" : "More"}
+                            </button>
                         </div>
                     </div>
                 </div>
