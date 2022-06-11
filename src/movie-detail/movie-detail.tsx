@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { IMG_PATH, MOVIE_CREDITS, MOVIE_DETAILS, STREAMING_PROVIDER } from "../constants";
 import "../styles/css/movie-detail.css";
+import MovieRate from "../movie-rate/movie-rate.tsx";
 
 const MovieDetail = () => {
     const navigate = useNavigate();
@@ -121,8 +122,7 @@ const MovieDetail = () => {
                             <span className="genres">{genres}</span>
                         </div>
                         <div className="col-md-2">
-                            <span className="vote-average">{movie.vote_average}</span>
-                            <span> / 10</span>
+                            <MovieRate key={movie.id} vote_average={movie.vote_average} />
                         </div>
                     </div>
                 </div>
@@ -172,13 +172,15 @@ const MovieDetail = () => {
                                     </div>
                                 ))}
                             </div>
-                            <button
-                                type="button"
-                                className="more"
-                                onClick={() => setExpanded(!expanded)}
-                            >
-                                {expanded ? "Less" : "More"}
-                            </button>
+                            <div className="row">
+                                <button
+                                    type="button"
+                                    className="more"
+                                    onClick={() => setExpanded(!expanded)}
+                                >
+                                    {expanded ? "Less" : "More"}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
