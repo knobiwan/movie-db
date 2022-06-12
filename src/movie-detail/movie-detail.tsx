@@ -163,7 +163,7 @@ const MovieDetail = () => {
                             <h2>Darsteller</h2>
                             <div className="row">
                                 {castForDisplay.map((actor: any) => (
-                                    <div className="actor col-sm-6 col-lg-4">
+                                    <div key={actor.name} className="actor col-sm-6 col-lg-4">
                                         <div className="actor-avatar" style={{backgroundImage: `url(${getActorPicturePath(actor)})`}} />
                                         <div>
                                             <p className="actor-name">{actor.name}</p>
