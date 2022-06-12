@@ -1,15 +1,19 @@
-span.vote-average {
-    font-weight: 600;
+span {
+    background-color: transparent;
 
-    &.green {
-        color: green;
-    }
-
-    &.orange {
-        color: orange
-    }
-
-    &.red {
-        color: red;
+    &.vote-average {
+        font-weight: 600;
+    
+        &.green {
+            color: green;
+        }
+    
+        &.orange {
+            color: orange
+        }
+    
+        &.red {
+            color: red;
+        }
     }
 }

@@ -1,7 +1,7 @@
 .movie-tile {
     display: flex;
     flex-wrap: wrap;
-    background-color: #eee;
+    background-color: #273c75;
     border-radius: 3px;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -16,7 +16,7 @@
     }
 
     .movie-info {
-        color: #000;
+        // color: #000;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -24,12 +24,14 @@
         letter-spacing: 0.5px;
         width: 100%;
         height: 100px;
+        background-color: #40407a;
 
         p {
             margin: 0;
             text-overflow: ellipsis;
             overflow: hidden;
             font-size: 0.8rem;
+            background-color: #40407a;
         }
     }
 }

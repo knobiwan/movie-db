@@ -7812,8 +7812,8 @@ textarea.form-control-lg {
 
 * {
   box-sizing: border-box;
-  background-color: #fff;
-  color: #000; }
+  background-color: #2c2c54;
+  color: #fff; }
 
 header {
   display: flex;
