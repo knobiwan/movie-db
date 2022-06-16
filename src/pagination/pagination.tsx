@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/css/pagination.css";
 import { usePagination, DOTS } from './usePagination.tsx';
 
 const Pagination = (props: any) => {

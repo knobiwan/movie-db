@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { DISCOVER_MOVIES, SEARCH_MOVIE } from "../constants";
-import "../styles/css/search.css";
 
 const Search = (props: any) => {
     const SubmitSearch = (searchTerm: string, props: any): void => {

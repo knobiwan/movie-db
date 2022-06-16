@@ -2,7 +2,7 @@ span {
     background-color: transparent;
 
     &.minimum {
-        background-color: #2c2c54;
+        background-color: $page-background-color;
         border-radius: 5px;
         padding: 2.5px 5px;
         margin-left: 10px;

@@ -3,7 +3,6 @@ import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { IMG_PATH, MOVIE_CREDITS, MOVIE_DETAILS, STREAMING_PROVIDER } from "../constants";
-import "../styles/css/movie-detail.css";
 import MovieRate from "../movie-rate/movie-rate.tsx";
 
 const MovieDetail = () => {

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import { IMG_PATH } from "../constants";
 import MovieRate from "../movie-rate/movie-rate.tsx";
-import "../styles/css/movie-card.css";
 
 const MovieCard = (props: any) => {
     const navigate = useNavigate();

@@ -1,5 +1,4 @@
 import * as React from "react";
-import "../styles/css/movie-rate.css";
 
 const MovieRate = (props: any) => {
 
