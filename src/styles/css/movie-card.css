@@ -1,4 +1,4 @@
-.movie-tile {
+.movie-card {
   display: flex;
   flex-wrap: wrap;
   background-color: #273c75;
@@ -9,10 +9,10 @@
   margin: 1rem;
   width: 220px;
   transition: transform .2s; }
-  .movie-tile img {
+  .movie-card img {
     width: 100%;
     height: 320px; }
-  .movie-tile .movie-info {
+  .movie-card .movie-info {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -21,13 +21,13 @@
     width: 100%;
     height: 100px;
     background-color: #40407a; }
-    .movie-tile .movie-info p {
+    .movie-card .movie-info p {
       margin: 0;
       text-overflow: ellipsis;
       overflow: hidden;
       font-size: 0.8rem;
       background-color: #40407a; }
 
-.movie-tile:hover {
+.movie-card:hover {
   transform: scale(1.05);
   cursor: pointer; }

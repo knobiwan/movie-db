@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import { IMG_PATH } from "../constants";
 import MovieRate from "../movie-rate/movie-rate.tsx";
-import "../styles/css/movie-tile.css";
+import "../styles/css/movie-card.css";
 
-const MovieTile = (props: any) => {
+const MovieCard = (props: any) => {
     const navigate = useNavigate();
 
     const getImage = (movie: any): string => {
@@ -18,7 +18,7 @@ const MovieTile = (props: any) => {
 
     return (
         <div
-            className="movie-tile"
+            className="movie-card"
             onClick={() => {
                 navigate("/details", { state: { movieId: props.movie.id } });
             }}
@@ -32,4 +32,4 @@ const MovieTile = (props: any) => {
     );
 };
 
-export default MovieTile;
+export default MovieCard;

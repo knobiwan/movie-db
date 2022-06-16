@@ -4,7 +4,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import { DISCOVER_MOVIES, SEARCH_MOVIE } from "./constants.js";
 import MovieDetail from "./movie-detail/movie-detail.tsx";
-import MovieTile from "./movie-tile/movie-tile.tsx";
+import MovieCard from "./movie-card/movie-card.tsx";
 import Pagination from "./pagination/pagination.tsx";
 import Search from "./search/search.tsx";
 import "./styles/css/index.css";
@@ -77,7 +77,7 @@ const Home = () => {
                     <div className="row">
                         <div className="movies col-md-12">
                             {movies.map((movie) => (
-                                <MovieTile key={movie.id} movie={movie} />
+                                <MovieCard key={movie.id} movie={movie} />
                             ))}
                         </div>
                     </div>
