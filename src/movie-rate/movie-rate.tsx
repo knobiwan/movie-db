@@ -18,7 +18,7 @@ const MovieRate = (props: any) => {
             </div>
             )}
             {props.minimum && (
-                <span className={`vote-average ${color}`}>{props.vote_average}</span>
+                <span className={`vote-average ${color} minimum`}>{props.vote_average}</span>
             )}
         </>
     )
