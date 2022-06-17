@@ -38,15 +38,15 @@ const Pagination = (props: any) => {
       <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`} onClick={onPrevious} >
         <button className="page-link">{'<'}</button>
       </li>
-      {paginationRange.map((pageNumber: number) => {
+      {paginationRange.map((pageNumber: number, index: number) => {
         if (pageNumber === DOTS) {
           return (
-            <li className="page-item dots">&#8230;
+            <li className="page-item dots" key={index}>&#8230;
             </li>
           );
         }
         return (
-          <li className={`page-item ${pageNumber === currentPage ? 'selected' : ''}`} onClick={() => onPageChange(pageNumber)}>
+          <li key={index} className={`page-item ${pageNumber === currentPage ? 'selected' : ''}`} onClick={() => onPageChange(pageNumber)}>
             <button className="page-link">{pageNumber}</button>
           </li>
         );
