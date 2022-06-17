@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { IMG_PATH } from "../constants";
-import MovieRate from "../movie-rate/movie-rate.tsx";
+import { IMG_PATH } from "../constants.js";
+import MovieRate from "../movie-rate/movie-rate";
 
 const MovieCard = (props: any) => {
     const navigate = useNavigate();

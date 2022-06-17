@@ -1,5 +1,5 @@
 import React from "react";
-import { usePagination, DOTS } from './usePagination.tsx';
+import usePagination, { DOTS } from './usePagination';
 
 const Pagination = (props: any) => {
   const {
@@ -18,7 +18,7 @@ const Pagination = (props: any) => {
     pageSize
   });
 
-  if (currentPage === 0 || paginationRange.length < 2) {
+  if (!paginationRange || currentPage === 0 || paginationRange.length < 2) {
     return null;
   }
 
@@ -38,8 +38,8 @@ const Pagination = (props: any) => {
       <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`} onClick={onPrevious} >
         <button className="page-link">{'<'}</button>
       </li>
-      {paginationRange.map((pageNumber: number, index: number) => {
-        if (pageNumber === DOTS) {
+      {paginationRange.map((pageNumber: number | string, index: number) => {
+        if (pageNumber.toString() === DOTS) {
           return (
             <li className="page-item dots" key={index}>&#8230;
             </li>

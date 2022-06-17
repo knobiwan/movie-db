@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { IMG_PATH, MOVIE_CREDITS, MOVIE_DETAILS, STREAMING_PROVIDER } from "../constants";
-import MovieRate from "../movie-rate/movie-rate.tsx";
+import { IMG_PATH, MOVIE_CREDITS, MOVIE_DETAILS, STREAMING_PROVIDER } from "../constants.js";
+import MovieRate from "../movie-rate/movie-rate";
 
 const MovieDetail = () => {
     const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { DISCOVER_MOVIES, SEARCH_MOVIE } from "../constants";
+import { SEARCH_MOVIE } from "../constants.js";
 
 const Search = (props: any) => {
     const SubmitSearch = (searchTerm: string, props: any): void => {
